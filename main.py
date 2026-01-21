@@ -13,20 +13,22 @@ def main():
 
     clock = pygame.time.Clock()
     dt = 0
-
+    new_player = player.Player(constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2) # Creates player instance
+    clock.tick(60) # Sets FPS to 60 frames per second
 
     while True:
         log_state()
-        for event in pygame.event.get():
-            screen.fill("black")
-            new_player = player.Player(constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2)
-            new_player.draw(screen)
-            pygame.display.flip()
-        clock.tick(60)
-        dt = clock.tick() / 1000
-        for event in pygame.event.get():
+        # Allows program to close with exit button on window
+        for event in pygame.event.get(): 
             if event.type == pygame.QUIT:
                 return
+        new_player.update(dt) # Updates players direction
+        screen.fill("black")
+        new_player.draw(screen) # Displays players current position
+        pygame.display.flip()
+        dt = clock.tick() / 1000 # Calculates the delta time
+
+
 
             
 if __name__ == "__main__":
