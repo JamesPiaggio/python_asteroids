@@ -43,6 +43,12 @@ def main():
                 log_event("player_hit")
                 print("Game Over!")
                 sys.exit()
+        for a in asteroid_group:
+            for s in shots:
+                if s.collides_with(a):
+                    log_event("asteroid_shot")
+                    s.kill()
+                    a.kill()
         screen.fill("black")
         for drawing in drawable: # Triggers the draw method for each in drawable grouping
             drawing.draw(screen) # Draws each object
