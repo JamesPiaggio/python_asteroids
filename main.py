@@ -38,25 +38,24 @@ def main():
             if event.type == pygame.QUIT:
                 return
         updatable.update(dt) # Triggers the update method for the updateable grouping
+        # Checks for collision with player
         for a in asteroid_group:
             if a.collides_with(new_player):
                 log_event("player_hit")
                 print("Game Over!")
                 sys.exit()
+        # Checks for collision with shot and asteroids
         for a in asteroid_group:
             for s in shots:
                 if s.collides_with(a):
                     log_event("asteroid_shot")
-                    s.kill()
-                    a.kill()
+                    s.kill() # Removes shot on collision
+                    a.split() # Splits asteroid on collision
         screen.fill("black")
         for drawing in drawable: # Triggers the draw method for each in drawable grouping
             drawing.draw(screen) # Draws each object
         pygame.display.flip()
         dt = clock.tick() / 1000 # Calculates the delta time
-
-
-
             
 if __name__ == "__main__":
     main()
