@@ -7,6 +7,8 @@ A Python-based application built as part of Boot.dev coursework to practice usin
 
 # Technologies used
 <ul><li>Python</li>
+  <li>Pygame</li>
   <li>Object-Oriented Programming</li>
 <li>Git</li>
 </ul>
+
